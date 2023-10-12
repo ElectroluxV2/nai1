@@ -1,6 +1,8 @@
 from easyAI import TwoPlayerGame, Negamax, Human_Player, AI_Player
 
 """
+    Authors: Mateusz Budzisz, Aleksander Guzik @ Polish-Japanese Academy of Technology
+
     "Dodge The Pile" is a two-player turn-based game where players take alternating turns manipulating a shared score.
     The objective of the game is to strategically add or subtract numbers from the score in a way that avoids negative values.
     The available numbers for moves are shared between the players and consist of the following integers: [1, 2, 3, 4, 6, 12].
