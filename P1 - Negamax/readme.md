@@ -34,6 +34,6 @@ This Python code implements the "Dodge The Pile" game using the `easyAI` library
 
 ## Example gameplay screenshots
 
-![App Screenshot](https://snipboard.io/anSL2r.jpg)
+![App Screenshot](../screenshots/p1-0.png)
 
-![App Screenshot](https://snipboard.io/UAEjhn.jpg)
+![App Screenshot](../screenshots/p1-1.png)
