@@ -28,6 +28,7 @@ To utilize this control system, users can input specific values for `altitude`, 
 ## Dependencies
 Ensure that you have installed the necessary libraries by running the following commands:
 - `pip install scikit-fuzzy`
+- `pip install numpy`
 - `pip install matplotlib`
 
 Then run main.py using `python3 main.py` or use Pycharm.
