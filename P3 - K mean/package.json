@@ -1,0 +1,15 @@
+{
+  "name": "p3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "euclidean": "node --no-warnings main.mjs euclidean",
+    "manhattan": "node --no-warnings main.mjs manhattan"
+  },
+  "author": "Mateusz Budzisz",
+  "license": "ISC",
+  "dependencies": {
+    "@seregpie/k-means": "^2.0.1"
+  }
+}
