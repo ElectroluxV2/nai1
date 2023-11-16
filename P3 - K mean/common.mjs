@@ -77,8 +77,6 @@ export const fetchMovieDetails = async (movieId) => {
 export const showTopMovies = async (count, recommendedScores, targetUserScores, asc) => {
   const exclusiveIds = bisectUserScores(recommendedScores, targetUserScores, asc).splice(0, count);
 
-  console.log(exclusiveIds)
-
   if (exclusiveIds.length < count) {
     console.log(`We couldn't recommend this many movies, we will show only ${exclusiveIds.length} findings:`);
   }

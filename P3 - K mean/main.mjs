@@ -1,8 +1,35 @@
+/**
+ * Movie Recommendation System using k-Means Clustering
+ *
+ * This program implements a movie recommendation system based on k-Means clustering.
+ * It takes user input, calculates the similarity between users using a specified distance method,
+ * and then recommends movies based on the preferences of similar users.
+ *
+ * The program reads movie ratings data from 'data.json'.
+ * Each user's ratings are represented as a vector of scores [0-10] for various movies.
+ *
+ * k-Means Clustering:
+ * - If there are no users similar to the requested user, the program dynamically determines
+ *   the number of clusters based on the total number of users and performs k-Means clustering.
+ * - Clusters represent groups of users with similar movie preferences.
+ * - You can force usage of k-mean even if there is directly similar user to the requested user, by setting FORCE_K_MEAN to true
+ *
+ * Usage:
+ * - Run the program and input the name of the user for whom you want movie recommendations.
+ * - Specify the distance method (e.g., Euclidean, Manhattan) as a command-line argument.
+ * - The program will output users similar to the requested user and recommend movies to watch
+ *   and movies to avoid.
+ *
+ * Author: Mateusz Budzisz i Aleksander Guzik
+ */
 import data from './data.json' assert { type: "json" };
 import readline from 'node:readline/promises';
 import { stdin as input, stdout as output } from 'node:process';
 import { calculateScore, showTopMovies } from './common.mjs';
 import { methods } from './distance.mjs';
+import KMeans from '@seregpie/k-means';
+
+const FORCE_K_MEAN = false; // Set to true if you want to use k-mean even if there is directly similar user to requested user
 
 /**
  * @typedef Unit Represents structure from data.json
@@ -63,18 +90,42 @@ const otherUsersInOrderOfSimilarity = Array
   .filter(({ user, score }) => score > 0) // Leave users that have at least one common movie with the requested user
   .sort((a, b) => b.score - a.score);
 
-if (otherUsersInOrderOfSimilarity.length === 0) {
-  // FIXME: Tu dało by się użyć k-mean żeby pogrupować użytkowników gdy ktoś się ze sobą nie pokrywa (było na wykładzie)
-  // Można użyć `@seregpie/k-means`
-  process.exit(2);
+/** @type UserScores */
+let mostSimilarUserRatings;
+/** @type UserScores */
+let leastSimilarUserRatings;
+
+// When there is no direct comparable user, use k-mean clustering
+if (otherUsersInOrderOfSimilarity.length === 0 || FORCE_K_MEAN) {
+  /** @type User[][] */
+  const clusters = KMeans(usersMap.values(), 2, { // 2 Clusters, so one will contain target user and second the opposite of user
+    map: (/** @type User */ user) => Object
+      .entries(user.ratings)
+      .sort(([movieIdA], movieIdB) => movieIdB - movieIdA)
+      .map(([, ratings]) => ratings),
+    distance: distanceMethod,
+    maxIterations: 1, // Disable high resolution of the result, due to poor data :)
+  });
+
+  const usersMostSimilarToTargetUser = clusters.find(x => x.some(u => u.name === requestedUser.name));
+  const usersLeastSimilarToTargetUser = clusters.find(x => x.every(u => u.name !== requestedUser.name));
+
+  if (usersLeastSimilarToTargetUser.length === 0 || usersMostSimilarToTargetUser.length === 0) {
+    console.error('Could not determine similarities with target user due to low volume of data');
+    process.exit(1)
+  }
+
+  console.log('Users similar to you:', usersMostSimilarToTargetUser.map(x => `${x.name} ${calculateScore(distanceMethod, requestedUser.ratings, x.ratings)}`));
+  leastSimilarUserRatings = usersMostSimilarToTargetUser.at(0).ratings;
+  mostSimilarUserRatings = usersLeastSimilarToTargetUser.at(0).ratings;
+} else {
+  console.log('Users similar to you:', otherUsersInOrderOfSimilarity.map(x => `${x.user.name} ${x.score}`));
+
+  mostSimilarUserRatings = otherUsersInOrderOfSimilarity.at(1).user.ratings;
+  leastSimilarUserRatings = otherUsersInOrderOfSimilarity.at(-1).user.ratings;
 }
 
-console.log('Users similar to you:', otherUsersInOrderOfSimilarity.map(x => `${x.user.name} ${x.score}`));
-
-const mostSimilarRecord = otherUsersInOrderOfSimilarity.at(1);
-const leastSimilarRecord = otherUsersInOrderOfSimilarity.at(-1);
-
 console.log('Top 5 movies to watch:');
-await showTopMovies(5, mostSimilarRecord.user.ratings, requestedUser.ratings, true);
+await showTopMovies(5, mostSimilarUserRatings, requestedUser.ratings, true);
 console.log('Top 5 movies not to watch:');
-await showTopMovies(5, leastSimilarRecord.user.ratings, requestedUser.ratings, false);
+await showTopMovies(5, leastSimilarUserRatings, requestedUser.ratings, false);
