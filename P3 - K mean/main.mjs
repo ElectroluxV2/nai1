@@ -1,7 +1,7 @@
 import data from './data.json' assert { type: "json" };
 import readline from 'node:readline/promises';
 import { stdin as input, stdout as output } from 'node:process';
-import { calculateScore } from './common.mjs';
+import { calculateScore, showTopMovies } from './common.mjs';
 import { methods } from './distance.mjs';
 
 /**
@@ -11,7 +11,7 @@ import { methods } from './distance.mjs';
  */
 
 /**
- * @typedef UserScores Values [0-10], when score is less than 1 that means we user have not rated movie
+ * @typedef UserScores Values [0-10], when the score is less than 1 that means the user has not rated the movie
  * @extends {Record<string, number>}
  */
 
@@ -36,7 +36,7 @@ const rl = readline.createInterface({ input, output });
 let requestedName = '';
 do {
   requestedName = await rl
-    .question('Type name of user you want to recommend and discommend movies: ')
+    .question('Type the name of the user you want to recommend and discommend movies: ')
     .then(x => x.toLocaleLowerCase());
 
   if (usersMap.has(requestedName)) break;
@@ -60,7 +60,7 @@ const otherUsersInOrderOfSimilarity = Array
   .from(usersMap.values())
   .filter(user => user.name !== requestedUser.name) // Remove requested users from recommendations
   .map(/** @type User */ user => ({ user, score: calculateScore(distanceMethod, user.ratings, requestedUser.ratings)}))
-  .filter(({ user, score }) => score > 0) // Leave users that have at least one common movie with requested user
+  .filter(({ user, score }) => score > 0) // Leave users that have at least one common movie with the requested user
   .sort((a, b) => b.score - a.score);
 
 if (otherUsersInOrderOfSimilarity.length === 0) {
@@ -72,19 +72,9 @@ if (otherUsersInOrderOfSimilarity.length === 0) {
 console.log('Users similar to you:', otherUsersInOrderOfSimilarity.map(x => `${x.user.name} ${x.score}`));
 
 const mostSimilarRecord = otherUsersInOrderOfSimilarity.at(1);
-
-const recommendedMovies = Object
-  .entries(mostSimilarRecord.user.ratings)
-  .sort(([, r1], [, r2]) => r2 - r1);
-
-console.log('Recommended movies', recommendedMovies);
-
 const leastSimilarRecord = otherUsersInOrderOfSimilarity.at(-1);
 
-const discommendMovies = Object
-  .entries(leastSimilarRecord.user.ratings)
-  .sort(([, r1], [, r2]) => r1 - r2);
-
-console.log('Discommend movies', discommendMovies);
-
-// TODO: Limit results and fetch data from IMDB API
+console.log('Top 5 movies to watch:');
+await showTopMovies(5, mostSimilarRecord.user.ratings, requestedUser.ratings, true);
+console.log('Top 5 movies not to watch:');
+await showTopMovies(5, leastSimilarRecord.user.ratings, requestedUser.ratings, false);
