@@ -18,10 +18,11 @@ To access the API, you need to obtain an API key. Here's how you can do it:
 - Find the section on obtaining an API key and follow the provided instructions.
 - Copy the generated API key.
 
-#### Now that you have your API key, insert it into the code:
+#### Now that you have your API key, insert it into the app:
 
-- Open the code file where the API key is required.
-- Replace the placeholder text 'YOUR_API_KEY' with the actual API key you obtained.
+- Put token contents into `IMDB_API_KEY` env variable.
+  - Unix: `export IMDB_API_KEY=<token>` 
+  - Windows: `set IMDB_API_KEY=<token>` 
 
 ## Running
 - Prepare `node` in version `21`
