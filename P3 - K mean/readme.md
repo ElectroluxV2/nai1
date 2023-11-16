@@ -7,4 +7,6 @@
 ## Running
 1. Prepare `node` in version `21`
 2. Next to `package.json` run `npm ci`
-3. Run `npm start`
+3. Run `npm start euclidean` to get recommendations based on euclidean distance
+4. Run `npm start manhattan` to get recommendations based on manhattan distance
+5. You can add your own distance method to `distance.mjs` use `node main.mjs <your distance function>` to test it.
