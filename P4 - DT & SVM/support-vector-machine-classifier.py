@@ -1,3 +1,10 @@
+"""
+Support vector machines (SVMs) are a set of supervised learning methods used for classification, regression and outliers detection.
+
+This program will evaluate data provided in 1 argument and will print performance summary.
+
+Author: Mateusz Budzisz
+"""
 import sys
 import numpy as np
 from sklearn.metrics import accuracy_score

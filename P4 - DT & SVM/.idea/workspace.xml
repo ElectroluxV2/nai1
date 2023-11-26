@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f587e1b6-d9f6-498c-8666-14325492cb4c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/banknote-authentication.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/decision-tree-classifier.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/support-vector-machine-classifier.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/P4 - DT &amp; SVM.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/P4 - DT &amp; SVM.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/top-50-websites-dark-mode.csv" beforeDir="false" afterPath="$PROJECT_DIR$/top-50-websites-dark-mode.csv" afterDir="false" />
+    <list default="true" id="f587e1b6-d9f6-498c-8666-14325492cb4c" name="Changes" comment="Dataset creator">
+      <change afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../screenshots/p4-0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/decision-tree-classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/decision-tree-classifier.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/index.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/support-vector-machine-classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/support-vector-machine-classifier.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,9 +20,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2YjDbazFr9GGzLftc4mAIKnaKk2" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -34,12 +36,14 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "/Users/mateuszbudzisz/Documents/nai1/P4 - DT & SVM",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "pnpm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -48,7 +52,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.DT - top-50-websites-dark-mode.csv">
+  <component name="RunManager" selected="Python.DT - banknote-authentication.csv">
     <list>
       <item itemvalue="Python.DT - banknote-authentication.csv" />
       <item itemvalue="Python.SVM - banknote-authentication.csv" />
@@ -64,15 +68,28 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1701030168259</updated>
-      <workItem from="1701030171007" duration="913000" />
+      <workItem from="1701030171007" duration="2121000" />
     </task>
+    <task id="LOCAL-00001" summary="ML">
+      <option name="closed" value="true" />
+      <created>1701031100932</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1701031100932</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="ML" />
+    <option name="LAST_COMMIT_MESSAGE" value="ML" />
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/P4___DT___SVM$DT___banknote_authentication_csv.coverage" NAME="DT - banknote-authentication.csv Coverage Results" MODIFIED="1701030838993" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/P4___DT___SVM$DT___banknote_authentication_csv.coverage" NAME="DT - banknote-authentication.csv Coverage Results" MODIFIED="1701032159316" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/P4___DT___SVM$DT___top_50_websites_dark_mode_csv.coverage" NAME="DT - top-50-websites-dark-mode.csv Coverage Results" MODIFIED="1701030970592" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/P4___DT___SVM$SVM___banknote_authentication_csv.coverage" NAME="SVM - banknote-authentication.csv Coverage Results" MODIFIED="1701031043127" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/P4___DT___SVM$SVM___top_50_websites_dark_mode_csv.coverage" NAME="SVM - top-50-websites-dark-mode.csv Coverage Results" MODIFIED="1701031048706" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />

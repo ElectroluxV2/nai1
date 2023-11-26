@@ -1,3 +1,7 @@
+/**
+ * Web-scrapper that gathers information about dark mode support for 50 most visited websites in the world
+ * @Author Mateusz Budzisz
+ */
 import puppeteer from 'puppeteer';
 import { EOL } from 'os';
 import { promises as fs } from 'fs';
@@ -56,7 +60,6 @@ try {
     console.log('Has dark mode support', hasDarkMode);
 
     const row = [
-      name,
       rank,
       new Date(`Jan 01 1970 ${avgVisitDuration} GMT`).getTime() / 1000, // Convert to seconds
       Number(hasDarkMode),
