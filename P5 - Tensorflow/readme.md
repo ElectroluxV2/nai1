@@ -29,3 +29,8 @@ Ensure that you have installed the necessary libraries by running the following 
    Run with `python fashion-mnist.py` \
    ![](../screenshots/p5-2.png) \
    Accuracy: 0.90
+
+4**Google flower photos - flowers classification based on image** \
+   Run with `python flowers.py` \
+   ![](../screenshots/p5-3.png) \
+   Accuracy: 0.99
