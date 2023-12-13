@@ -1,16 +1,10 @@
 """
-https://www.geeksforgeeks.org/build-the-model-for-fashion-mnist-dataset-using-tensorflow-in-python/
+Author: sahilgangurde08 (https://www.geeksforgeeks.org/build-the-model-for-fashion-mnist-dataset-using-tensorflow-in-python/)
+Author: Mateusz Budzisz
 """
-# To load the mnist data
 from keras.datasets import fashion_mnist
 from tensorflow.keras.models import Sequential
-
-# importing various types of hidden layers
-from tensorflow.keras.layers import Conv2D, MaxPooling2D, \
-    Dense, Flatten
-
-# Adam optimizer for better LR and less loss
-# from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.layers import Conv2D, MaxPooling2D, Dense, Flatten
 from tensorflow.keras.optimizers.legacy import Adam
 import matplotlib.pyplot as plt
 import numpy as np

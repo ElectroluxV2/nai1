@@ -1,5 +1,5 @@
 """
-Author: https://staging4.aicorespot.io/produce-a-neural-network-for-banknote-authentication/
+Author: AICorespot Editorial Team (https://staging4.aicorespot.io/produce-a-neural-network-for-banknote-authentication/)
 Author: Mateusz Budzisz
 
 k-fold cross-validation of base model for the banknote dataset
