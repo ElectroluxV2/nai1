@@ -28,7 +28,10 @@ Ensure that you have installed the necessary libraries by running the following 
 3. **fashion mnist - clothes classification based on image** \
    Run with `python fashion-mnist.py` \
    ![](../screenshots/p5-2.png) \
-   Accuracy: 0.90
+   Accuracy: 0.90 \
+   Epochs = 1 & steps per epoch = 10: \
+   ![](../screenshots/p5-4.png) \
+   Accuracy with 10 times smaller model: 0.20
 
 4. **Google flower photos - flowers classification based on image** \
    Run with `python flowers.py` \
