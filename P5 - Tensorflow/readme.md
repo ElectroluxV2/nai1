@@ -11,6 +11,7 @@ Ensure that you have installed the necessary libraries by running the following 
 - `pip install tensorflow`
 - `pip install matplotlib`
 - `pip install keras`
+- `pip install urllib3==1.26.15` Only if you see ssl errors
 
 ## Overview
 1. **Banknote rigged or authentic** \
