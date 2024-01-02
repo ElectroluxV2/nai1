@@ -59,7 +59,7 @@ jobs:
         run: cd "P6 - OpenCV" && pnpm install
 
       - name: Build application
-        run: cd "P6 - OpenCV" && pnpm run build
+        run: cd "P6 - OpenCV" && pnpm run build --base=/nai1
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
