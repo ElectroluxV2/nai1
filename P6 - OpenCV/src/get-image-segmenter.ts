@@ -1,14 +1,12 @@
-import { FilesetResolver, ImageSegmenter } from '@mediapipe/tasks-vision';
+import { ImageSegmenter } from '@mediapipe/tasks-vision';
+import wasmLoaderPath from '../node_modules/@mediapipe/tasks-vision/wasm/vision_wasm_internal.js?url';
+import wasmBinaryPath from '../node_modules/@mediapipe/tasks-vision/wasm/vision_wasm_internal.wasm?url';
 
 export const getImageSegmenter = async () => {
-  const wasmAssets = import.meta.glob('/node_modules/@mediapipe/tasks-vision/wasm/*', {
-    as: 'url',
-    eager: true,
-  });
-
-  const firstWasmModulePath = wasmAssets[Object.keys(wasmAssets)[0]];
-  const wasmModulesBasePath = firstWasmModulePath.substring(0, firstWasmModulePath.lastIndexOf('/'));
-  const wasmFileset = await FilesetResolver.forVisionTasks(wasmModulesBasePath);
+  const wasmFileset: Parameters<typeof ImageSegmenter.createFromOptions>[0] = {
+    wasmBinaryPath: wasmBinaryPath,
+    wasmLoaderPath: wasmLoaderPath
+  };
 
   return await ImageSegmenter.createFromOptions(wasmFileset, {
     baseOptions: {
