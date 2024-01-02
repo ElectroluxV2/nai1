@@ -51,15 +51,15 @@ jobs:
         name: Setup pnpm cache
         with:
           path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('P6 - OpenCV/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
-        run: pnpm install
+        run: cd "P6 - OpenCV" && pnpm install
 
       - name: Build application
-        run: pnpm run build
+        run: cd "P6 - OpenCV" && pnpm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
@@ -67,7 +67,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: 'dist' # See build script
+          path: 'P6 - OpenCV/dist' # See build script
 
       - name: Deploy to GitHub Pages
         id: deployment
