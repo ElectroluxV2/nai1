@@ -1,7 +1,6 @@
 import { ImageSegmenterResult } from "@mediapipe/tasks-vision";
 import { pEvent as promisifyEvent } from 'p-event';
 import { getImageSegmenter } from './get-image-segmenter.ts';
-import { legendColors } from './constants.ts';
 
 const imageSegmenter = await getImageSegmenter();
 
@@ -10,9 +9,34 @@ const video = document.createElement("video") as HTMLVideoElement;
 video.autoplay = true;
 
 const canvas = document.getElementById("canvas") as HTMLCanvasElement;
+const overlayCanvas = document.getElementById("overlayCanvas") as HTMLCanvasElement;
 const canvasCtx = canvas.getContext("2d", {
   willReadFrequently: true
 })!;
+const overlayCtx = overlayCanvas.getContext("2d")!;
+
+// Controls
+let skinColor = [15, 4, 4];
+let skinAlpha = 180;
+let hairColor = [200, 87, 51];
+let hairAlpha = 128;
+
+const skinColorInput = document.getElementById("skinColor") as HTMLInputElement;
+const skinAlphaInput = document.getElementById("skinAlpha") as HTMLInputElement;
+const hairColorInput = document.getElementById("hairColor") as HTMLInputElement;
+const hairAlphaInput = document.getElementById("hairAlpha") as HTMLInputElement;
+
+skinColorInput.value = rgbToHex(skinColor);
+hairColorInput.value = rgbToHex(hairColor);
+
+skinColorInput.onchange = () => skinColor = hexToRgb(skinColorInput.value);
+hairColorInput.onchange = () => hairColor = hexToRgb(hairColorInput.value);
+
+skinAlphaInput.value = String(skinAlpha);
+hairAlphaInput.value = String(hairAlpha);
+
+skinAlphaInput.onchange = () => skinAlpha = Number(skinAlphaInput.value)
+hairAlphaInput.onchange = () => hairAlpha = Number(hairAlphaInput.value);
 
 // Toggle button
 const toggleMainLoopButton = document.getElementById("toggleMainLoopButton") as HTMLButtonElement;
@@ -45,6 +69,10 @@ async function toggleMainLoop(_event: MouseEvent) {
   // Adjust canvas dimensions
   canvas.width = video.videoWidth;
   canvas.height = video.videoHeight;
+  overlayCanvas.width = video.videoWidth;
+  overlayCanvas.height = video.videoHeight;
+
+  console.log(imageSegmenter.getLabels());
 
   // Get segmentation from the webcam
   let lastWebcamTime = -1;
@@ -69,15 +97,37 @@ async function toggleMainLoop(_event: MouseEvent) {
     const mask: Float32Array = result.categoryMask!.getAsFloat32Array();
     for (let maskIndex = 0, pixelIndex = 0; maskIndex < mask.length; ++maskIndex, pixelIndex += 4) {
       const maskVal = Math.round(mask[maskIndex] * 255.0);
-      const legendColor = legendColors[maskVal % legendColors.length];
-      canvasImageData[pixelIndex] = (legendColor[0] + canvasImageData[pixelIndex]) / 2;
-      canvasImageData[pixelIndex + 1] = (legendColor[1] + canvasImageData[pixelIndex + 1]) / 2;
-      canvasImageData[pixelIndex + 2] = (legendColor[2] + canvasImageData[pixelIndex + 2]) / 2;
-      canvasImageData[pixelIndex + 3] = (legendColor[3] + canvasImageData[pixelIndex + 3]) / 2;
+      let color = [0, 0, 0, 0];
+
+      // If body-skin or face-skin
+      if (maskVal === 2 || maskVal === 3) {
+        color = skinColor;
+        color[3] = skinAlpha;
+      }
+
+      // If hair
+      if (maskVal === 1) {
+        color = hairColor;
+        color[3] = hairAlpha;
+      }
+
+      canvasImageData[pixelIndex] = color[0];
+      canvasImageData[pixelIndex + 1] = color[1];
+      canvasImageData[pixelIndex + 2] = color[2];
+      canvasImageData[pixelIndex + 3] = color[3];
     }
     const uint8Array = new Uint8ClampedArray(canvasImageData.buffer);
     const dataNew = new ImageData(uint8Array, video.videoWidth, video.videoHeight);
 
-    canvasCtx.putImageData(dataNew, 0, 0);
+    overlayCtx.putImageData(dataNew, 0, 0);
   }
+}
+
+function rgbToHex([r, g, b]: number[]) {
+  return "#" + (1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1);
+}
+
+function hexToRgb(hex: string) {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)!;
+  return [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)];
 }

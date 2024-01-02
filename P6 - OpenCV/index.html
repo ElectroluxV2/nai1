@@ -11,6 +11,25 @@
     <main>
       <button id="toggleMainLoopButton">Enable</button>
       <canvas id="canvas"></canvas>
+      <canvas id="overlayCanvas"></canvas>
+      <section>
+        <label>
+          <span>Hair color</span>
+          <input type="color" id="hairColor">
+        </label>
+        <label>
+          <span>Hair alpha</span>
+          <input type="range" min="0" max="255" id="hairAlpha">
+        </label>
+        <label>
+          <span>Skin color</span>
+          <input type="color" id="skinColor">
+        </label>
+        <label>
+          <span>Skin alpha</span>
+          <input type="range" min="0" max="255" id="skinAlpha">
+        </label>
+      </section>
     </main>
     <script type="module" src="/src/main.ts"></script>
   </body>

@@ -18,12 +18,28 @@
     & > main {
       width: 100svw;
       height: 100svh;
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-rows: auto 1fr;
 
       & > button {
         padding: 2em;
         font-size: xx-large;
+      }
+
+      & > canvas {
+        grid-row: 2;
+        grid-column: 1;
+
+        &#overlayCanvas {
+          filter: blur(2px);
+        }
+      }
+
+      & > section {
+        padding: 1em;
+        display: flex;
+        gap: 1em;
+        justify-content: space-evenly;
       }
     }
   }
