@@ -5,9 +5,7 @@ import { getImageSegmenter } from './get-image-segmenter.ts';
 const imageSegmenter = await getImageSegmenter();
 
 // Get DOM elements
-const video = document.createElement("video") as HTMLVideoElement;
-video.autoplay = true;
-
+const video = document.getElementById("original") as HTMLVideoElement;
 const canvas = document.getElementById("canvas") as HTMLCanvasElement;
 const overlayCanvas = document.getElementById("overlayCanvas") as HTMLCanvasElement;
 const canvasCtx = canvas.getContext("2d", {
