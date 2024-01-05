@@ -1,3 +1,8 @@
+/**
+ * Author: Mateusz Budzisz
+ * Based on https://codepen.io/mediapipe-preview/pen/xxJNjbN
+ */
+
 import { ImageSegmenterResult } from "@mediapipe/tasks-vision";
 import { pEvent as promisifyEvent } from 'p-event';
 import { getImageSegmenter } from './get-image-segmenter.ts';
