@@ -1,5 +1,6 @@
 # Machine learning used within computer vision
 This project uses [media pipe](https://developers.google.com/mediapipe) to colorize human skin & hair.
+GitHub Actions is setup to deploy main branch to [https://electroluxv2.github.io/nai1/](https://electroluxv2.github.io/nai1/).
 
 ## Dependencies
 Requirements:
