@@ -13,4 +13,4 @@ Ensure that you have installed the necessary libraries by running the following 
 Run with `pnpm start`, open browser at [localhost:5173](http://localhost:5173/)
 
 ## Example
-![video](../screenshots/p6-0.mp4)
+https://github.com/ElectroluxV2/nai1/assets/29741129/4224ea52-ef9f-45f4-ab86-a216aaffa50d
